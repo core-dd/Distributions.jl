@@ -594,6 +594,7 @@ const continuous_distributions = [
     "chisq",    # Chi depends on Chisq
     "chi",
     "cosine",
+    "complexnormal",
     "epanechnikov",
     "exponential",
     "fdist",
