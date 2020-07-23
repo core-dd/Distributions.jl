@@ -9,6 +9,8 @@ f(x; \\mu, \\sigma) = \\frac{1}{πσ^2} \\exp \\left(-\\frac{1}{σ^2} (x-μ)^\\a
 
 It is related to the Normal distribution via
 
+Andersen et al. - 1995 - The Multivariate Complex Normal Distribution
+
 """
 
 struct ComplexNormal{T<:Real} <: ContinuousUnivariateDistribution
@@ -62,8 +64,13 @@ std(d::ComplexNormal) = d.σ
 
 # Helpers
 
-# logpdf
 # pdf
+function pdf(d::ComplexNormal, x::Complex{Real})
+  σ2 = d.σ2^2
+  1/(π*σ2) * exp(-1/σ2 * abs2(x-d.μ))
+end
+
+# logpdf
 # logcdf
 # logccdf
 # cdf
@@ -72,6 +79,7 @@ std(d::ComplexNormal) = d.σ
 # cquantile
 # mgf
 # cf
+cf(d::ComplexNormal, t::Complex{Real}) = exp(1.0im * real(conj(t)*d.μ - d.σ^2 / 4 * abs2(t)))
 
 #### Sampling
 
