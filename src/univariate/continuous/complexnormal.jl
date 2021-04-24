@@ -30,11 +30,11 @@ function ComplexNormal(μ::Complex{T}, σ::T; check_args=true) where {T <: Real}
     return ComplexNormal{T}(μ, σ)
 end
 
-ComplexNormal(μ::Real, σ::Real) = ComplexNormal(μ + 1.0im, σ)
+ComplexNormal(μ::Real, σ::Real) = ComplexNormal(μ + 0im, σ)
 ComplexNormal(μ::Complex{Real}, σ::Real) = ComplexNormal(promote(μ, σ)...)
-ComplexNormal(μ::Integer, σ::Integer) = ComplexNormal(float(μ) + 1.0im, float(σ))
+ComplexNormal(μ::Integer, σ::Integer) = ComplexNormal(float(μ) + 0im, float(σ))
 ComplexNormal(μ::Complex{Integer}, σ::Integer) = ComplexNormal(float(μ), float(σ))
-ComplexNormal(μ::T) where {T <: Real} = ComplexNormal(μ+1.0im, one(T))
+ComplexNormal(μ::T) where {T <: Real} = ComplexNormal(μ+0im, one(T))
 ComplexNormal(μ::T) where {T <: Complex{Real}} = ComplexNormal(μ, one(T))
 ComplexNormal() = ComplexNormal(0.0+0.0im, 1.0, check_args=false)
 
